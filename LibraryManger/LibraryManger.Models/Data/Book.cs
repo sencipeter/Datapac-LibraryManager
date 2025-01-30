@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LibraryManger.Models.Data
 {
@@ -12,6 +13,7 @@ namespace LibraryManger.Models.Data
 
         public bool IsBorrowed { get; set; }
         
+        [JsonIgnore]
         public ICollection<Borrowing> Borrowings { get; set; } = new List<Borrowing>();
     }
 }

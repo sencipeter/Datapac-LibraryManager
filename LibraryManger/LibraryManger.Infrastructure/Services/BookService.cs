@@ -17,7 +17,7 @@ namespace LibraryManger.Infrastructure.Services
             _appRepository = appRepository;
         }
 
-        public async Task<SingleResult<Book>> AddBook(Book book)
+        public async Task<SingleResult<Book>> AddBookAsync(Book book)
         {
             var result = new SingleResult<Book>();
             try
@@ -31,13 +31,14 @@ namespace LibraryManger.Infrastructure.Services
             return result;
         }
 
-        public async Task<SingleResult<Book>> DeleteBook(int bookId)
+        public async Task<SingleResult<Book>> DeleteBookAsync(int bookId)
         {
             var result = new SingleResult<Book>();
             try
             {
                 result.Result = await _appRepository.GetByIdAsync(bookId);
-                await _appRepository.DeleteAsync(new List<int> { bookId });
+                if (result.Result != null)
+                    await _appRepository.DeleteAsync(new List<int> { bookId });
             }
             catch (Exception ex)
             {
@@ -46,7 +47,7 @@ namespace LibraryManger.Infrastructure.Services
             return result;
         }
 
-        public async Task<SingleResult<Book>> GetBook(int bookId, bool withAllBorrowings = false)
+        public async Task<SingleResult<Book>> GetBookAsync(int bookId, bool withAllBorrowings = false)
         {
             var result = new SingleResult<Book>();
             try
@@ -68,18 +69,24 @@ namespace LibraryManger.Infrastructure.Services
             return result;
         }
 
-        public async Task<ListResult<Book>> ListBooks(Pagination? pagination, Sorting<Book>? sorting)
+        public async Task<ListResult<Book>> ListBooksAsync(Pagination? pagination, Sorting<Book>? sorting)
         {
             return await _appRepository.ListAsync(pagination, sorting); 
         }
 
-        public async Task<SingleResult<Book>> UpdateBook(Book book)
+        public async Task<SingleResult<Book>> UpdateBookAsync(Book book)
         {
             var result = new SingleResult<Book>();
             try
             {
-
-                result.Result = await _appRepository.GetByIdAsync(book.Id);                
+                result.Result = await _appRepository.GetByIdAsync(book.Id);
+                if (result.Result != null)
+                {
+                    result.Result.Author = book.Author;
+                    result.Result.Title = book.Title; 
+                    result.Result.Active = book.Active;
+                    await _appRepository.UpdateAsync(book);
+                }
             }
             catch (Exception ex)
             {

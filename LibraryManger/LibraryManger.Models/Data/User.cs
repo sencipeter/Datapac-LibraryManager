@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LibraryManger.Models.Data
 {
@@ -10,6 +11,7 @@ namespace LibraryManger.Models.Data
         [Required(AllowEmptyStrings = false)]
         public string Email { get; set; } = string.Empty;
 
+        [JsonIgnore]
         public ICollection<Borrowing> Borrowings { get; set; } = new List<Borrowing>();
     }
 }

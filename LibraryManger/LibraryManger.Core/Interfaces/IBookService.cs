@@ -4,10 +4,10 @@ namespace LibraryManger.Core.Interfaces
 {
     public interface IBookService
     {
-        public Task<SingleResult<Book>> AddBook(Book book);
-        public Task<SingleResult<Book>> UpdateBook(Book book);
-        public Task<SingleResult<Book>> DeleteBook(int bookId);
-        public Task<SingleResult<Book>> GetBook(int bookId, bool withAllBorrowings = false);
-        public Task<ListResult<Book>> ListBooks(Pagination? pagination, Sorting<Book>? sorting);
+        public Task<SingleResult<Book>> AddBookAsync(Book book);
+        public Task<SingleResult<Book>> UpdateBookAsync(Book book);
+        public Task<SingleResult<Book>> DeleteBookAsync(int bookId);
+        public Task<SingleResult<Book>> GetBookAsync(int bookId, bool withAllBorrowings = false);
+        public Task<ListResult<Book>> ListBooksAsync(Pagination? pagination, Sorting<Book>? sorting);
     }
 }
