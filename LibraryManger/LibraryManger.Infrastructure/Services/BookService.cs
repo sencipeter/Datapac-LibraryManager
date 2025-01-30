@@ -3,7 +3,6 @@ using LibraryManger.Core.Interfaces;
 using LibraryManger.Core.Interfaces.Data;
 using LibraryManger.Models.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 
 namespace LibraryManger.Infrastructure.Services
 {
