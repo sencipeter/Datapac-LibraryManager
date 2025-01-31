@@ -1,6 +1,47 @@
 @LibraryManger.Api_HostAddress = http://localhost:5118
 
-GET {{LibraryManger.Api_HostAddress}}/weatherforecast/
+GET {{LibraryManger.Api_HostAddress}}/api/book/1
 Accept: application/json
 
 ###
+
+POST {{LibraryManger.Api_HostAddress}}/api/book
+Accept: application/json
+Content-Type: application/json
+{
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald"
+}
+
+###
+
+PUT {{LibraryManger.Api_HostAddress}}/api/book
+Accept: application/json
+Content-Type: application/json
+{
+    "id": 1,
+    "title": "The Great Gatsby v3",
+    "author": "F. Scott Fitzgerald"
+}
+
+###
+
+DELETE {{LibraryManger.Api_HostAddress}}/api/book/7
+Accept: application/json
+
+###
+POST {{LibraryManger.Api_HostAddress}}/api/library/borrowbook
+Accept: application/json
+Content-Type: application/json
+{
+    "bookId": 1,
+    "userId": 1
+}
+
+###
+POST {{LibraryManger.Api_HostAddress}}/api/library/returnbook
+Accept: application/json
+Content-Type: application/json
+{
+    "bookId": 1
+}

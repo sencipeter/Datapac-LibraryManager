@@ -61,6 +61,7 @@ namespace LibraryManger.Infrastructure.Services
 
                     book.IsBorrowed = true;
                     await _bookRepository.UpdateAsync(book);
+                    scope.Complete();
                 }
 
                 result.Result.User = user;
@@ -104,6 +105,7 @@ namespace LibraryManger.Infrastructure.Services
 
                     book.IsBorrowed = false;
                     await _bookRepository.UpdateAsync(book);
+                    scope.Complete();
                 }
 
                 result.Result = actualBorrowing;

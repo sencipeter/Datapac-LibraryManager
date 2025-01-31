@@ -75,6 +75,37 @@ namespace LibraryManger.Api.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Book>> AddBook(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    return (await _bookService.AddBookAsync(book)).GetResultOrThrowException();
+                    
+                }
+                catch (ApplicationException ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                catch (Exception)
+                {
+                    return BadRequest("Internal server error!");
+                }
+            }
+            else
+            {
+                var errors = ModelState
+                        .Where(ms => ms.Value.Errors.Any())
+                        .ToDictionary(
+                            kvp => kvp.Key,
+                            kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                        );
+                return BadRequest(JsonSerializer.Serialize(errors));
+            }
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<Book>> DeleteBookById(int id)
         {

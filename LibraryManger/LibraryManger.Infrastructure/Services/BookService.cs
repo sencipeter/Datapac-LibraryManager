@@ -22,7 +22,7 @@ namespace LibraryManger.Infrastructure.Services
             var result = new SingleResult<Book>();
             try
             {
-                book = await _appRepository.AddAsync(book);
+                result.Result = await _appRepository.AddAsync(book);
             }
             catch (Exception ex)
             {                
@@ -85,7 +85,7 @@ namespace LibraryManger.Infrastructure.Services
                     result.Result.Author = book.Author;
                     result.Result.Title = book.Title; 
                     result.Result.Active = book.Active;
-                    await _appRepository.UpdateAsync(book);
+                    await _appRepository.UpdateAsync(result.Result);
                 }
             }
             catch (Exception ex)
