@@ -1,3 +1,28 @@
+**Task**
+
+**Objective: Implementation of API endpoints for managing books in a library**
+
+Your task is to create API endpoints for managing borrowed books.
+
+**Requirements:**
+
+- Create an ASP.NET Core application for managing borrowed books.
+- Use database models for users and books, and a data layer that enables communication with the database (e.g., using Entity Framework Core).
+- The endpoints should support:
+  - Creating a new book
+  - Retrieving details of an existing book by ID
+  - Updating an existing book
+  - Deleting a book
+  - Creating a new loan
+  - Confirming the return of a borrowed book
+- Ensure validation of input data.
+
+**Bonus tasks:**
+
+- Cover the code with tests (unit tests, integration tests).
+- Implement functionality to automatically send a reminder to the user one day before the book's return deadline (simulate email sending).
+
+
 **Zadanie**
 
 Úloha: Implementácia API endpointov pre správu kníh v knižnici
